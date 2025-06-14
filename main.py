@@ -1,9 +1,10 @@
 from oxapy import HttpServer, Request, Response, Router, Status  # type: ignore
+from pathlib import Path
 
 import re
 import mimetypes
 import matplotlib.pyplot as plt
-from pathlib import Path
+import logging
 
 # Constants
 BENCH_FILE = "bench.txt"
@@ -11,21 +12,21 @@ IMAGE_PATH = Path("static/benchmark_rps.png")
 
 
 def generate_benchmark_graph():
-    print("Generating benchmark graph...")
+    logging.log(1000, "Generating benchmark graph...")
 
     # Read and parse benchmark file
     try:
         with open(BENCH_FILE) as f:
             content = f.read()
     except FileNotFoundError:
-        print(f"Benchmark file {BENCH_FILE} not found.")
+        logging.log(1000, f"Benchmark file {BENCH_FILE} not found.")
         return
 
     frameworks = re.findall(r"# (.+)", content)
     reqs_per_sec = [float(x) for x in re.findall(r"Requests/sec:\s+([\d.]+)", content)]
 
     if len(frameworks) != len(reqs_per_sec):
-        print("Mismatch between frameworks and requests/sec")
+        logging.log(1000, "Mismatch between frameworks and requests/sec")
         return
 
     # Adjust figure height based on number of bars (limit min and max)
@@ -46,13 +47,12 @@ def generate_benchmark_graph():
     plt.savefig(IMAGE_PATH, dpi=120)
     plt.close()
 
-    print(f"Graph saved to {IMAGE_PATH}")
+    logging.log(1000, f"Graph saved to {IMAGE_PATH}")
 
 
 # Generate the graph before launching the server
 generate_benchmark_graph()
 
-# Setup HTTP server
 router = Router()
 
 
@@ -69,7 +69,7 @@ def bench(request: Request):
         )
 
 
-print("Launching server on http://localhost:5555/bench ...")
+logging.log(1000, "Launching server on http://localhost:5555/bench ...")
 
 server = HttpServer(("0.0.0.0", 5555))
 server.attach(router)
