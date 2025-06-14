@@ -1,0 +1,39 @@
+# FastAPI
+Running 10s test @ http://127.0.0.1:8000/hello/joe
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    39.99ms   18.48ms 400.48ms   96.51%
+    Req/Sec   647.41     73.50     1.11k    86.22%
+  25724 requests in 10.01s, 3.39MB read
+Requests/sec:   2569.20
+Transfer/sec:    346.24KB
+
+# Sanic
+Running 10s test @ http://127.0.0.1:3000/hello/joe
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.69ms    1.29ms  36.97ms   76.81%
+    Req/Sec     6.79k   290.98     7.95k    69.75%
+  270280 requests in 10.02s, 28.87MB read
+Requests/sec:  26979.78
+Transfer/sec:      2.88MB
+
+# OxAPY
+Running 10s test @ http://127.0.0.1:5555/hello/joe
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.67ms  716.18us  11.39ms   76.71%
+    Req/Sec    14.31k     0.94k   19.69k    74.50%
+  570553 requests in 10.03s, 61.49MB read
+Requests/sec:  56882.16
+Transfer/sec:      6.13MB
+
+# Go stdlib
+Running 10s test @ http://127.0.0.1:5555/greet/joe
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.36ms    2.74ms  30.70ms   87.79%
+    Req/Sec    13.54k     1.63k   18.69k    70.00%
+  540856 requests in 10.06s, 66.02MB read
+Requests/sec:  53781.67
+Transfer/sec:      6.57MB

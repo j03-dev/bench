@@ -1,0 +1,14 @@
+[project]
+name = "bench"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.3"
+dependencies = [
+    "fastapi>=0.115.8",
+    "matplotlib>=3.10.3",
+    "oxapy>=0.5.7",
+    "pyproject-toml>=0.1.0",
+    "sanic>=25.3.0",
+    "uvicorn>=0.34.0",
+]
