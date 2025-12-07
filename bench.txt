@@ -8,7 +8,7 @@ Running 10s test @ http://127.0.0.1:8000/greet/joe
 Requests/sec:   3589.43
 Transfer/sec:    483.73KB
 
-# Sanic
+# Sanic
 Running 10s test @ http://127.0.0.1:3000/greet/joe
   4 threads and 100 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
@@ -28,7 +28,7 @@ Running 10s test @ http://127.0.0.1:5555/greet/joe
 Requests/sec: 143144.27
 Transfer/sec:     15.43MB
 
-# Go stdlib
+# Gostdlib
 Running 10s test @ http://127.0.0.1:5555/greet/joe
   4 threads and 100 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev

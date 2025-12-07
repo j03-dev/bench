@@ -1,8 +1,7 @@
-from oxapy import HttpServer, Request, Response, Router, Status  # type: ignore
+from oxapy import HttpServer, Router, static_file
 from pathlib import Path
 
 import re
-import mimetypes
 import matplotlib.pyplot as plt
 import logging
 
@@ -29,13 +28,10 @@ def generate_benchmark_graph():
         logging.log(1000, "Mismatch between frameworks and requests/sec")
         return
 
-    # Adjust figure height based on number of bars (limit min and max)
     bar_height = 0.4
 
-    # type: ignore
     height = max(2, min(0.6 * len(frameworks), 6))
 
-    # Plot horizontal bar chart
     plt.figure(figsize=(8, height))
     plt.barh(frameworks, reqs_per_sec, color="#4BA3C3", height=bar_height)
     plt.xlabel("Requests/sec")
@@ -50,27 +46,14 @@ def generate_benchmark_graph():
     logging.log(1000, f"Graph saved to {IMAGE_PATH}")
 
 
-# Generate the graph before launching the server
-generate_benchmark_graph()
-
-router = Router()
-
-
-@router.get("/bench")
-def bench(request: Request):
-    if not IMAGE_PATH.exists():
-        return Response("Benchmark image not found", status=Status.NOT_FOUND)
-
-    with open(IMAGE_PATH, "rb") as file:
-        content = file.read()
-        content_type, _ = mimetypes.guess_type(str(IMAGE_PATH))
-        return Response(
-            content, content_type=content_type or "application/octet-stream"
-        )
+def main():
+    generate_benchmark_graph()
+    (
+        HttpServer(("0.0.0.0", 5555))
+        .attach(Router().route(static_file("/bench", "./static")))
+        .run()
+    )
 
 
-logging.log(1000, "Launching server on http://localhost:5555/bench ...")
-
-server = HttpServer(("0.0.0.0", 5555))
-server.attach(router)
-server.run()
+if __name__ == "__main__":
+    main()
