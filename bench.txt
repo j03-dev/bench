@@ -1,39 +1,39 @@
 # FastAPI
-Running 10s test @ http://127.0.0.1:8000/hello/joe
+Running 10s test @ http://127.0.0.1:8000/greet/joe
   4 threads and 100 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    39.99ms   18.48ms 400.48ms   96.51%
-    Req/Sec   647.41     73.50     1.11k    86.22%
-  25724 requests in 10.01s, 3.39MB read
-Requests/sec:   2569.20
-Transfer/sec:    346.24KB
+    Latency    28.41ms   12.04ms 274.42ms   93.53%
+    Req/Sec     0.90k   119.14     1.37k    76.69%
+  35909 requests in 10.00s, 4.73MB read
+Requests/sec:   3589.43
+Transfer/sec:    483.73KB
 
-# Sanic
-Running 10s test @ http://127.0.0.1:3000/hello/joe
+# Sanic
+Running 10s test @ http://127.0.0.1:3000/greet/joe
   4 threads and 100 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     3.69ms    1.29ms  36.97ms   76.81%
-    Req/Sec     6.79k   290.98     7.95k    69.75%
-  270280 requests in 10.02s, 28.87MB read
-Requests/sec:  26979.78
-Transfer/sec:      2.88MB
+    Latency     1.43ms  578.22us  12.98ms   79.34%
+    Req/Sec    17.32k     1.30k   20.27k    73.25%
+  689343 requests in 10.02s, 73.63MB read
+Requests/sec:  68821.95
+Transfer/sec:      7.35MB
 
 # OxAPY
-Running 10s test @ http://127.0.0.1:5555/hello/joe
-  4 threads and 100 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     1.67ms  716.18us  11.39ms   76.71%
-    Req/Sec    14.31k     0.94k   19.69k    74.50%
-  570553 requests in 10.03s, 61.49MB read
-Requests/sec:  56882.16
-Transfer/sec:      6.13MB
-
-# Go stdlib
 Running 10s test @ http://127.0.0.1:5555/greet/joe
   4 threads and 100 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     2.36ms    2.74ms  30.70ms   87.79%
-    Req/Sec    13.54k     1.63k   18.69k    70.00%
-  540856 requests in 10.06s, 66.02MB read
-Requests/sec:  53781.67
-Transfer/sec:      6.57MB
+    Latency   677.91us  369.85us   5.09ms   80.57%
+    Req/Sec    35.99k     2.30k   44.06k    67.50%
+  1432596 requests in 10.01s, 154.38MB read
+Requests/sec: 143144.27
+Transfer/sec:     15.43MB
+
+# Go stdlib
+Running 10s test @ http://127.0.0.1:5555/greet/joe
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.02ms    1.29ms  15.31ms   85.36%
+    Req/Sec    36.64k     5.01k   52.98k    67.75%
+  1463130 requests in 10.05s, 178.60MB read
+Requests/sec: 145615.23
+Transfer/sec:     17.78MB

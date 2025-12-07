@@ -1,13 +1,5 @@
-from oxapy import HttpServer, Router  # type: ignore
-
-router = Router()
+from oxapy import HttpServer, Router, get
 
 
-@router.get("/greet/{name}")
-def greet(request, name: str):
-    return f"Hello, {name}!"
-
-
-app = HttpServer(("127.0.0.1", 5555))
-app.attach(router)
-app.run()
+greet = get("/greet/{name}", lambda _r, name: f"Hello, {name}!")
+HttpServer(("127.0.0.1", 5555)).attach(Router().route(greet)).run()

@@ -7,7 +7,7 @@ app = Sanic("my-hello-world-app")
 
 
 @app.route("/greet/<name:str>", methods=["GET"])
-async def greet(request, name):
+def greet(request, name):
     return text(f"Hello {name}")
 
 
