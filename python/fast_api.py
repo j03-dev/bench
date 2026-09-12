@@ -4,7 +4,7 @@ import uvicorn
 app = FastAPI()
 
 
-@app.get("/greet/{name}")
+@app.get("/hello/{name}")
 def greet(name: str):
     return f"Hello, {name}!"
 

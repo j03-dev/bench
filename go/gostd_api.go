@@ -7,11 +7,11 @@ import (
 )
 
 func greet(w http.ResponseWriter, r *http.Request) {
-	name := strings.TrimPrefix(r.URL.Path, "/greet/")
+	name := strings.TrimPrefix(r.URL.Path, "/hello/")
 	fmt.Fprintf(w, "Hello, %s!", name)
 }
 
 func main() {
-	http.HandleFunc("/greet/", greet)
+	http.HandleFunc("/hello/", greet)
 	http.ListenAndServe(":5555", nil)
 }
