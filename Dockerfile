@@ -1,12 +1,21 @@
-FROM python:3.12-slim
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 
 WORKDIR /app
 
-COPY pyproject.toml .
-COPY . .
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
+ENV UV_NO_DEV=1
 
-RUN pip install .
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 8080
+COPY pyproject.toml uv.lock ./
 
-CMD ["python", "main.py"]
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-install-project --no-editable
+
+COPY . /app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-editable
+
+CMD ["uv", "run", "main.py"]

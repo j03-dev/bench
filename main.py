@@ -49,7 +49,7 @@ def generate_benchmark_graph():
 def main():
     generate_benchmark_graph()
     (
-        HttpServer(("0.0.0.0", 5555))
+        HttpServer(("0.0.0.0", 8000))
         .attach(Router().route(static_file("/bench", "./static")))
         .run()
     )
