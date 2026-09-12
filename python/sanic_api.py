@@ -6,7 +6,7 @@ from sanic.response import text
 app = Sanic("my-hello-world-app")
 
 
-@app.route("/greet/<name:str>", methods=["GET"])
+@app.route("/hello/<name:str>", methods=["GET"])
 def greet(request, name):
     return text(f"Hello {name}")
 
